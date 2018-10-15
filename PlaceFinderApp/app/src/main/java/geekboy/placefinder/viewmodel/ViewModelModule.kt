@@ -1,13 +1,13 @@
-package geekboy.weatherapp.viewmodel
+package geekboy.placefinder.viewmodel
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import geekboy.placefinder.di.key.ViewModelKey
 import geekboy.placefinder.mvvm.places.PlacesViewModel
 import geekboy.placefinder.mvvm.search.SearchViewModel
-import geekboy.weatherapp.di.key.ViewModelKey
 
 @Module
 abstract class ViewModelModule {
@@ -15,12 +15,12 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(SearchViewModel::class)
-    abstract fun bindMainViewModel(mainViewModel: SearchViewModel): ViewModel
+    abstract fun bindSearchViewModel(searchViewModel: SearchViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(PlacesViewModel::class)
-    abstract fun bindSearchViewModel(searchViewModel: PlacesViewModel): ViewModel
+    abstract fun bindPlaceViewModel(placesViewModel: PlacesViewModel): ViewModel
 
     @Binds
     internal abstract fun bindViewModelFactory(factory: AppViewModelFactory): ViewModelProvider.Factory

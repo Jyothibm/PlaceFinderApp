@@ -1,4 +1,4 @@
-package geekboy.weatherapp.data.remote
+package geekboy.placefinder.data.remote
 
 
 interface RemoteSource {

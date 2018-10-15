@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package geekboy.weatherapp.di.qualifiers
+package geekboy.placefinder.di.qualifiers
 
 /**
  * Marks an activity / fragment injectable.

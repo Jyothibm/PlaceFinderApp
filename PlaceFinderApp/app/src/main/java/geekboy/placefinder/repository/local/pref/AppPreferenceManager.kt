@@ -1,8 +1,8 @@
-package geekboy.weatherapp.data.local.pref
+package geekboy.placefinder.data.local.pref
 
 import android.content.Context
-import com.sonicapp.di.qualifiers.PreferenceInfo
-import geekboy.weatherapp.data.DataManager
+import com.placefinder.di.qualifiers.PreferenceInfo
+import geekboy.placefinder.data.DataManager
 import javax.inject.Inject
 
 class AppPreferenceManager

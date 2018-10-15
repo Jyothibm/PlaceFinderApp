@@ -1,10 +1,10 @@
-package geekboy.weatherapp.di.module
+package geekboy.placefinder.di.module
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import geekboy.placefinder.di.qualifiers.ActivityScoped
 import geekboy.placefinder.mvvm.places.PlacesActivity
 import geekboy.placefinder.mvvm.search.SearchActivity
-import geekboy.weatherapp.di.qualifiers.ActivityScoped
 
 /**
  * When SubComponent and its builder has no other methods then we can use ContributesAndroidInjector

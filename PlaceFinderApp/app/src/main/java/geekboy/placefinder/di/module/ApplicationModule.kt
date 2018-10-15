@@ -1,18 +1,18 @@
-package geekboy.weatherapp.di.module
+package geekboy.placefinder.di.module
 
 import android.app.Application
 import android.content.Context
-import com.sonicapp.di.qualifiers.PreferenceInfo
+import com.placefinder.di.qualifiers.PreferenceInfo
 import dagger.Module
 import dagger.Provides
-import geekboy.weatherapp.data.AppDataManager
-import geekboy.weatherapp.data.DataManager
-import geekboy.weatherapp.data.local.pref.AppPreferenceManager
-import geekboy.weatherapp.data.local.pref.PreferenceSource
-import geekboy.weatherapp.data.remote.RemoteDataManager
-import geekboy.weatherapp.data.remote.RemoteSource
-import geekboy.weatherapp.utils.PREF_NAME
-import geekboy.weatherapp.viewmodel.ViewModelModule
+import geekboy.placefinder.data.AppDataManager
+import geekboy.placefinder.data.DataManager
+import geekboy.placefinder.data.local.pref.AppPreferenceManager
+import geekboy.placefinder.data.local.pref.PreferenceSource
+import geekboy.placefinder.data.remote.RemoteDataManager
+import geekboy.placefinder.data.remote.RemoteSource
+import geekboy.placefinder.utils.PREF_NAME
+import geekboy.placefinder.viewmodel.ViewModelModule
 import javax.inject.Singleton
 
 

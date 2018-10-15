@@ -1,4 +1,4 @@
-package com.sonicapp.data.model.api
+package com.placefinder.data.model.api
 
 class Response {
 }

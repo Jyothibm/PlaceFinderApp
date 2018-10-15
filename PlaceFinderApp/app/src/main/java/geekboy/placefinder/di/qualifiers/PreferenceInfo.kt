@@ -14,7 +14,7 @@
  *  limitations under the License
  */
 
-package com.sonicapp.di.qualifiers
+package com.placefinder.di.qualifiers
 
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy

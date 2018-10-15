@@ -1,9 +1,9 @@
-package geekboy.weatherapp.data
+package geekboy.placefinder.data
 
 import android.content.Context
+import geekboy.placefinder.data.local.pref.AppPreferenceManager
+import geekboy.placefinder.data.remote.RemoteDataManager
 
-import geekboy.weatherapp.data.local.pref.AppPreferenceManager
-import geekboy.weatherapp.data.remote.RemoteDataManager
 
 import javax.inject.Inject
 import javax.inject.Singleton

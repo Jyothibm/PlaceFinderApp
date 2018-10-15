@@ -1,7 +1,7 @@
-package geekboy.weatherapp.data
+package geekboy.placefinder.data
 
-import geekboy.weatherapp.data.local.pref.PreferenceSource
-import geekboy.weatherapp.data.remote.RemoteSource
+import geekboy.placefinder.data.local.pref.PreferenceSource
+import geekboy.placefinder.data.remote.RemoteSource
 
 
 interface DataManager: RemoteSource, PreferenceSource {

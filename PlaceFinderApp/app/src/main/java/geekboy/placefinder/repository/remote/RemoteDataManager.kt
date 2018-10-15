@@ -1,6 +1,5 @@
-package geekboy.weatherapp.data.remote
+package geekboy.placefinder.data.remote
 
-import android.arch.lifecycle.LiveData
 import geekboy.placefinder.utils.retrofit.ApiResponse
 import geekboy.placefinder.utils.retrofit.LiveDataCallAdapterFactory
 import okhttp3.OkHttpClient

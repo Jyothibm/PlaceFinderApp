@@ -1,6 +1,6 @@
-package geekboy.weatherapp.data.local.pref
+package geekboy.placefinder.data.local.pref
 
-import geekboy.weatherapp.data.DataManager
+import geekboy.placefinder.data.DataManager
 
 
 interface PreferenceSource {

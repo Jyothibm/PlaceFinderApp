@@ -1,4 +1,4 @@
-package geekboy.weatherapp.utils.other
+package geekboy.placefinder.utils.other
 
 import android.content.Context
 import android.net.ConnectivityManager

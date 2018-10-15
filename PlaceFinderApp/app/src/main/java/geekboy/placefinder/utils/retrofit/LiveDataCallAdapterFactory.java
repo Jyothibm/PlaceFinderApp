@@ -1,11 +1,10 @@
 package geekboy.placefinder.utils.retrofit;
 
-import android.arch.lifecycle.LiveData;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+import androidx.lifecycle.LiveData;
 import retrofit2.CallAdapter;
 import retrofit2.Retrofit;
 

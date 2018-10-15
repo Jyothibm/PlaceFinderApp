@@ -1,4 +1,4 @@
-package geekboy.weatherapp.data.local.pref
+package geekboy.placefinder.data.local.pref
 
 import android.content.Context
 import android.content.SharedPreferences

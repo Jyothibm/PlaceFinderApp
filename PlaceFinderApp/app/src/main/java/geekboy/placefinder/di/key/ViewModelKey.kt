@@ -1,6 +1,6 @@
-package geekboy.weatherapp.di.key
+package geekboy.placefinder.di.key
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import dagger.MapKey
 import kotlin.annotation.AnnotationTarget.*
 import kotlin.reflect.KClass

@@ -2,7 +2,7 @@ package geekboy.placefinder
 
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
-import geekboy.weatherapp.di.component.DaggerAppComponent
+import geekboy.placefinder.di.component.DaggerAppComponent
 
 class PlaceFinderApplication : DaggerApplication() {
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {

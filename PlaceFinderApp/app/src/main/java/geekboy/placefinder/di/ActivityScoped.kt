@@ -1,4 +1,4 @@
-package geekboy.weatherapp.di.qualifiers
+package geekboy.placefinder.di.qualifiers
 
 import javax.inject.Scope
 
