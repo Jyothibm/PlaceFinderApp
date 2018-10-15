@@ -18,7 +18,7 @@ class RemoteDataManager @Inject constructor() : RemoteSource {
     private val client = OkHttpClient.Builder()
     private val retrofitInstance = Retrofit.Builder()
 
-            .baseUrl("")
+            .baseUrl("https://maps.googleapis.com/maps/api/place/nearbysearch/")
             .client(client.build())
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(LiveDataCallAdapterFactory())

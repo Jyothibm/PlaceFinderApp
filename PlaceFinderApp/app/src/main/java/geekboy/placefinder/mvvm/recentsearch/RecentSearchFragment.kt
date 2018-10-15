@@ -11,14 +11,18 @@ import android.view.ViewGroup
 import dagger.android.support.AndroidSupportInjection
 
 import geekboy.placefinder.R
+import geekboy.placefinder.mvvm.base.BaseFragment
+import geekboy.placefinder.viewmodel.AppViewModelFactory
+import javax.inject.Inject
 
-class RecentSearchFragment : Fragment() {
+class RecentSearchFragment : BaseFragment<RecentSearchViewModel>() {
 
     companion object {
         fun newInstance() = RecentSearchFragment()
     }
 
     private lateinit var viewModel: RecentSearchViewModel
+    @Inject lateinit var appViewModelFactory: AppViewModelFactory
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -35,7 +39,11 @@ class RecentSearchFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(RecentSearchViewModel::class.java)
-        // TODO: Use the ViewModel
+    }
+
+    override fun getViewModel(): RecentSearchViewModel {
+        viewModel = ViewModelProviders.of(this,appViewModelFactory).get(RecentSearchViewModel::class.java)
+        return viewModel
     }
 
 }

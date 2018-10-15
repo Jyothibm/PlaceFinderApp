@@ -1,8 +1,9 @@
 package geekboy.placefinder.mvvm.search
 
-import android.app.Application
-import android.content.Context
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
+import geekboy.placefinder.data.AppDataManager
+import javax.inject.Inject
 
-class SearchViewModel(context: Context): AndroidViewModel(context as Application) {
+class SearchViewModel
+@Inject constructor(appDataManager: AppDataManager) : ViewModel() {
 }
