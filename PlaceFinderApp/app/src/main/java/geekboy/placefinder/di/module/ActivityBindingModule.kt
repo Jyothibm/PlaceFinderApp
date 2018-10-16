@@ -22,4 +22,6 @@ abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector
     abstract fun PlacesActivity(): PlacesActivity
+
+
 }

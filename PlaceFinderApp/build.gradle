@@ -8,6 +8,7 @@ buildscript {
     ext.pagingVersion = '1.0.0-alpha3'
     ext.lifeCycle='2.0.0'
     ext.room_version = "2.1.0-alpha01"
+    ext.arch_core = "2.0.0"
     ext.retrofitVersion='2.3.0'
     ext.rxAndroidVersion='2.0.1'
     ext.anko_version='0.10.4'
@@ -22,6 +23,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.0-alpha13'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

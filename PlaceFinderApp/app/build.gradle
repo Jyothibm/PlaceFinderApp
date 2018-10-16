@@ -68,11 +68,12 @@ dependencies {
     implementation "androidx.room:room-rxjava2:$rootProject.room_version"
 
     // Test helpers
-    testImplementation "androidx.room:room-testing:$room_version"
+    testImplementation "androidx.room:room-testing:$rootProject.room_version"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     testImplementation "org.mockito:mockito-core:2.15.0"
+    testImplementation "androidx.arch.core:core-testing:$rootProject.arch_core"
 
     implementation 'com.android.support:design:28.0.3'
     implementation 'androidx.core:core-ktx:1.0.0-alpha1'
