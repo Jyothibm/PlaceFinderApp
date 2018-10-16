@@ -17,23 +17,23 @@ import javax.inject.Singleton
 
 
 @Module(includes = [(ViewModelModule::class)])
-class ApplicationModule {
+open abstract class ApplicationModule {
     @Provides
     @Singleton
     internal fun bindContext(application: Application): Context = application
 
     @Provides
     @Singleton
-    internal fun getRemoteSource(remoteDataManager: RemoteDataManager): RemoteSource = remoteDataManager
+    fun getRemoteSource(remoteDataManager: RemoteDataManager): RemoteSource = remoteDataManager
 
     @Provides
     @Singleton
-    internal fun getPreferenceSource(appPreferenceManager: AppPreferenceManager):
+    fun getPreferenceSource(appPreferenceManager: AppPreferenceManager):
             PreferenceSource = appPreferenceManager
 
     @Provides
     @Singleton
-    internal fun provideDataManger(appDataManager: AppDataManager): DataManager = appDataManager
+    fun provideDataManger(appDataManager: AppDataManager): DataManager = appDataManager
 
 
 
