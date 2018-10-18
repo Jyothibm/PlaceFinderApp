@@ -63,7 +63,6 @@ class RecentSearchFragment : BaseFragment<RecentSearchViewModel>() {
                 binding.rvRecentSearch.adapter = RecentSearchAdapter(it)
             }
         })
-
     }
 
     override fun getViewModel(): RecentSearchViewModel {

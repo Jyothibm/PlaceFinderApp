@@ -12,5 +12,5 @@ interface RecentSearchDao {
     fun insert(recentSearch: RecentSearch)
 
     @Query("SELECT * FROM RecentSearch")
-    fun getAllRecentSearch(): LiveData<List<RecentSearch>>
+    fun getAllRecentSearch(): List<RecentSearch>
 }

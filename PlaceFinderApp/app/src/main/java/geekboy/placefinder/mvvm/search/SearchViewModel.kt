@@ -5,11 +5,17 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import geekboy.placefinder.data.AppDataManager
+import geekboy.placefinder.repository.local.db.recentsearch.RecentSearch
 import geekboy.placefinder.repository.model.places.PlacesResponse
+import kotlinx.coroutines.experimental.*
 import javax.inject.Inject
 
-class SearchViewModel
-@Inject constructor(appDataManager: AppDataManager) : ViewModel() {
+open class SearchViewModel
+@Inject constructor(val appDataManager: AppDataManager) : ViewModel() {
+
+    private val viewModelJob = Job()
+
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     val placeData = MutableLiveData<PlacesResponse>()
     val loading = ObservableField<Boolean>(false)
@@ -18,11 +24,34 @@ class SearchViewModel
 
     fun getPlaceInformation() {
 
+        uiScope.launch {
+            var response = appDataManager.getNearbyPlacesData(currentLocation, searchString.get().toString()).await()
+            if (response.code() == 200) {
+                Log.d("Response", "Response:${response.body().toString()}")
+                launch(Dispatchers.IO) {
+                    appDataManager.getRecentSearchDao().insert(RecentSearch(id = null, name = searchString.get().toString()))
+                    viewModelJob.join()
+                }
+
+                placeData.value = response.body()
+            } else {
+                // Load DB details
+            }
+
+            loading.set(false)
+        }
+
     }
 
     fun onSearchButtonClicked() {
-        Log.d("SearchString","Search:${searchString.get()} and $currentLocation")
+        Log.d("SearchString", "Search:${searchString.get()} and $currentLocation")
         loading.set(true)
+        getPlaceInformation()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 
 }

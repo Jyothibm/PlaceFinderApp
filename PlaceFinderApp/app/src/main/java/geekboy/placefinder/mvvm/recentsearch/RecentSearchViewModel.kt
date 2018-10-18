@@ -21,13 +21,16 @@ class RecentSearchViewModel
 
     fun getRecentSearchData() {
         uiScope.launch {
-            if (recentSearchDao.getAllRecentSearch().value != null) {
-                recentSearchList.value =
-                        recentSearchDao.getAllRecentSearch().value as ArrayList<RecentSearch>
-            } else {
-                recentSearchList.value =
-                        ArrayList()
+            launch(Dispatchers.IO) {
+                if (recentSearchDao.getAllRecentSearch() != null) {
+                    var listDat = recentSearchDao.getAllRecentSearch() as ArrayList<RecentSearch>
+                    recentSearchList.postValue(listDat)
+                } else {
+                    recentSearchList.value =
+                            ArrayList()
+                }
             }
+
         }
     }
 

@@ -21,6 +21,7 @@ import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.RuntimePermissions
 import javax.inject.Inject
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import permissions.dispatcher.OnPermissionDenied
 
 
@@ -38,6 +39,8 @@ class SearchActivity : BaseActivity<SearchViewModel>(), HasSupportFragmentInject
     @Inject
     lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
+    private val recentSearchFragment = RecentSearchFragment.newInstance()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,8 +51,15 @@ class SearchActivity : BaseActivity<SearchViewModel>(), HasSupportFragmentInject
             ) as ActivitySearchBinding
         }
         searchBinding.searchVM = searchViewModel
-        loadRecentSearchFragment()
+       loadRecentSearchFragment()
        fetchCurrentLocationWithPermissionCheck()
+       observePlacesResults()
+    }
+
+    private fun observePlacesResults() {
+        searchViewModel.placeData.observe(this, Observer {
+            recentSearchFragment.loadRecentSearch()
+        })
     }
 
     @NeedsPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -71,7 +81,7 @@ class SearchActivity : BaseActivity<SearchViewModel>(), HasSupportFragmentInject
 
     private fun loadRecentSearchFragment() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.recentSearchLayout, RecentSearchFragment.newInstance(), FRAGMENT_TAG)
+            .replace(R.id.recentSearchLayout, recentSearchFragment, FRAGMENT_TAG)
             .commitAllowingStateLoss()
     }
 

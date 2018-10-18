@@ -47,7 +47,7 @@ class RecentSearchAdapter(var listSearch: ArrayList<RecentSearch>) :
             parent,
             false
         )
-    ) : RecyclerView.ViewHolder(parent) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: String) {
             binding.searchString = item

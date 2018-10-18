@@ -5,12 +5,15 @@ import geekboy.placefinder.data.AppDataManager
 import geekboy.placefinder.di.component.DaggerAppComponent
 import geekboy.placefinder.di.module.ApplicationModule
 import geekboy.placefinder.mvvm.search.SearchViewModel
+import org.junit.Assert
 import org.junit.BeforeClass
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
+import org.mockito.Mockito.anyString
 import org.mockito.Mockito.mock
 import javax.inject.Inject
 
@@ -32,7 +35,8 @@ class SearchViewModelTest {
 
     @Test
     fun checkSearchString(){
-
+        searchViewModel.searchString.set("Foo")
+        Assert.assertEquals("Foo",searchViewModel.searchString.get().toString())
     }
 
 }

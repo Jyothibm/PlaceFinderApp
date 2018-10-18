@@ -15,7 +15,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AppDataManager : DataManager {
+open class AppDataManager : DataManager {
 
     private var remoteDataManager: RemoteDataManager
 
