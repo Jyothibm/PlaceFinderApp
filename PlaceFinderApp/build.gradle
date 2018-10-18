@@ -3,13 +3,13 @@
 buildscript {
     ext.kotlin_version = '1.2.71'
     ext.daggerVersion = '2.15'
-    ext.databinding = '3.2.0-alpha01'
-    ext.supportLibraryVersion = '27.0.2'
+    ext.databinding = '3.3.0-alpha13'
+    ext.supportLibraryVersion = '1.0.0-beta01'
     ext.pagingVersion = '1.0.0-alpha3'
-    ext.lifeCycle='2.0.0'
+    ext.lifeCycle= '2.0.0-beta01'
     ext.room_version = "2.1.0-alpha01"
     ext.arch_core = "2.0.0"
-    ext.retrofitVersion='2.3.0'
+    ext.retrofitVersion='2.4.0'
     ext.rxAndroidVersion='2.0.1'
     ext.anko_version='0.10.4'
     ext.crittercism_version='1.4'

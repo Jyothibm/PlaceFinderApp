@@ -1,29 +1,31 @@
 package geekboy.placefinder.data.remote
 
-import geekboy.placefinder.utils.retrofit.ApiResponse
-import geekboy.placefinder.utils.retrofit.LiveDataCallAdapterFactory
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
+import geekboy.placefinder.repository.model.places.PlacesResponse
+import geekboy.placefinder.utils.API_KEY
+import kotlinx.coroutines.experimental.Deferred
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 
 
-
-
-
 class RemoteDataManager @Inject constructor() : RemoteSource {
+
+
     private var iApiMethods: IApiMethods
 
     private val client = OkHttpClient.Builder()
     private val retrofitInstance = Retrofit.Builder()
 
-            .baseUrl("https://maps.googleapis.com/maps/api/place/nearbysearch/")
-            .client(client.build())
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(LiveDataCallAdapterFactory())
-
-            .build()
+        .baseUrl("https://maps.googleapis.com/maps/api/place/nearbysearch/")
+        .client(client.build())
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+        .build()
 
     init {
 
@@ -35,6 +37,13 @@ class RemoteDataManager @Inject constructor() : RemoteSource {
 
     }
 
-
+    override fun getNearbyPlacesData(location: String, searchQuery: String): Deferred<Response<PlacesResponse>> {
+        return iApiMethods.getPlacesData(
+            loc = location,
+            radius = "300",
+            searchQuery = searchQuery,
+            key = API_KEY
+        )
+    }
 
 }

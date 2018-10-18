@@ -1,32 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".mvvm.search.SearchActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="searchVM"
+            type="geekboy.placefinder.mvvm.search.SearchViewModel"/>
+    </data>
 
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Search Places"
-                android:textSize="16sp"
-                android:textColor="@android:color/white" />
-        </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <FrameLayout
-        android:id="@+id/recentSearchLayout"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="48dp"/>
+        tools:context=".mvvm.search.SearchActivity">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Place Finder"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+            </androidx.appcompat.widget.Toolbar>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="48dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
+
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/bg_round_edge"
+                    android:drawableLeft="@drawable/ic_search"
+                    android:hint="What are you looking for?"
+                    android:text="@={searchVM.searchString}"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_round_corner"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="8dp"
+                    android:text="Search"
+                    android:textAllCaps="false"
+                    android:enabled="@{!searchVM.loading}"
+                    android:clickable="@{!searchVM.loading}"
+                    android:alpha="@{searchVM.loading ? 0.5f : 1.0f}"
+                    android:onClick="@{() -> searchVM.onSearchButtonClicked()}"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#d1d1d1" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/recentSearchLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="@{searchVM.loading ? View.VISIBLE : View.GONE}"/>
+            </FrameLayout>
+
+        </LinearLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

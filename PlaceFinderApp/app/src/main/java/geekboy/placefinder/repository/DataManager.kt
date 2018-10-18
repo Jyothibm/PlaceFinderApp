@@ -2,9 +2,10 @@ package geekboy.placefinder.data
 
 import geekboy.placefinder.data.local.pref.PreferenceSource
 import geekboy.placefinder.data.remote.RemoteSource
+import geekboy.placefinder.repository.local.db.AppDBSource
 
 
-interface DataManager: RemoteSource, PreferenceSource {
+interface DataManager: RemoteSource, PreferenceSource, AppDBSource {
 
     enum class LoggedInMode private constructor(val type: Int) {
 
