@@ -17,6 +17,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        resValue "string", "google_maps_key",
+                (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
     }
     buildTypes {
         release {
@@ -27,6 +29,11 @@ android {
     dataBinding {
         enabled = true
     }
+
+    androidExtensions {
+        experimental = true
+    }
+
     kotlin {
         experimental {
             coroutines "enable"
@@ -89,4 +96,6 @@ dependencies {
     implementation 'io.nlopez.smartlocation:library:3.3.3'
     implementation "com.github.hotchemi:permissionsdispatcher:4.0.0-alpha1"
     kapt "com.github.hotchemi:permissionsdispatcher-processor:4.0.0-alpha1"
+
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
 }

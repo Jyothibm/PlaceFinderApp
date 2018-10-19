@@ -1,18 +1,19 @@
 package geekboy.placefinder.repository.local.db.favsearch
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import com.google.gson.annotations.SerializedName
+import geekboy.placefinder.repository.local.db.recentsearch.RecentSearch
 
-@Entity(
-    primaryKeys = ["id"]
-)
+@Entity(primaryKeys = ["id"])
 data class FavoritePlace(val id: String,
-                         @field:SerializedName("name")
+                         @ColumnInfo(name = "name")
                          val name: String,
-                         @field:SerializedName("address")
+                         @ColumnInfo(name = "address")
                          val address: String,
-                         @field:SerializedName("lat_lng")
+                         @ColumnInfo(name = "lat_lng")
                          val geo_address: String,
-                         @field:SerializedName("rating")
+                         @ColumnInfo(name = "rating")
                          val rating: String
 )

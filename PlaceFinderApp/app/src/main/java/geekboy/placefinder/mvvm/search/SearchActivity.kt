@@ -2,6 +2,7 @@ package geekboy.placefinder.mvvm.search
 
 
 import android.Manifest
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -22,6 +23,8 @@ import permissions.dispatcher.RuntimePermissions
 import javax.inject.Inject
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import geekboy.placefinder.mvvm.places.PlacesActivity
+import geekboy.placefinder.mvvm.places.RENDER_BOTH_MAP_LIST
 import permissions.dispatcher.OnPermissionDenied
 
 
@@ -59,6 +62,17 @@ class SearchActivity : BaseActivity<SearchViewModel>(), HasSupportFragmentInject
     private fun observePlacesResults() {
         searchViewModel.placeData.observe(this, Observer {
             recentSearchFragment.loadRecentSearch()
+            if (it.code()==200){
+                if (it.body()?.placesList?.size?:0 > 0){
+                    val intent = Intent (SearchActivity@this, PlacesActivity::class.java)
+                    intent.putExtra("place_list",it.body()?.placesList)
+                    intent.putExtra("title",searchViewModel.searchString.get().toString())
+                    intent.putExtra("type", RENDER_BOTH_MAP_LIST)
+                    startActivity(intent)
+                }else{
+                    Toast.makeText(SearchActivity@this,"No Result Found", Toast.LENGTH_SHORT).show()
+                }
+            }
         })
     }
 

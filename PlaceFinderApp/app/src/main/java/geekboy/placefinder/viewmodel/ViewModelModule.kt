@@ -7,6 +7,8 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import geekboy.placefinder.di.key.ViewModelKey
 import geekboy.placefinder.mvvm.places.PlacesViewModel
+import geekboy.placefinder.mvvm.places.placelist.PlaceListViewModel
+import geekboy.placefinder.mvvm.places.placemap.PlaceMapViewModel
 import geekboy.placefinder.mvvm.recentsearch.RecentSearchViewModel
 import geekboy.placefinder.mvvm.search.SearchViewModel
 
@@ -27,6 +29,16 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(PlacesViewModel::class)
     abstract fun bindPlaceViewModel(placesViewModel: PlacesViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PlaceMapViewModel::class)
+    abstract fun bindPlaceMapViewModel(placesMapViewModel: PlaceMapViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PlaceListViewModel::class)
+    abstract fun bindPlaceListViewModel(placesListViewModel: PlaceListViewModel): ViewModel
 
     @Binds
     internal abstract fun bindViewModelFactory(factory: AppViewModelFactory): ViewModelProvider.Factory

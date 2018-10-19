@@ -20,7 +20,7 @@ abstract class ActivityBindingModule {
     abstract fun searchActivity(): SearchActivity
 
     @ActivityScoped
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [(PlaceFragmentBindingModule::class)])
     abstract fun PlacesActivity(): PlacesActivity
 
 

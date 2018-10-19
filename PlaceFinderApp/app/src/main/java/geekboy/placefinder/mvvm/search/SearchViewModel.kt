@@ -8,6 +8,7 @@ import geekboy.placefinder.data.AppDataManager
 import geekboy.placefinder.repository.local.db.recentsearch.RecentSearch
 import geekboy.placefinder.repository.model.places.PlacesResponse
 import kotlinx.coroutines.experimental.*
+import retrofit2.Response
 import javax.inject.Inject
 
 open class SearchViewModel
@@ -17,7 +18,7 @@ open class SearchViewModel
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    val placeData = MutableLiveData<PlacesResponse>()
+    val placeData = MutableLiveData<Response<PlacesResponse>>()
     val loading = ObservableField<Boolean>(false)
     var searchString = ObservableField<String>("")
     var currentLocation = ""
@@ -32,15 +33,13 @@ open class SearchViewModel
                     appDataManager.getRecentSearchDao().insert(RecentSearch(id = null, name = searchString.get().toString()))
                     viewModelJob.join()
                 }
-
-                placeData.value = response.body()
+                placeData.value = response
             } else {
                 // Load DB details
+                placeData.value = response
             }
-
             loading.set(false)
         }
-
     }
 
     fun onSearchButtonClicked() {
