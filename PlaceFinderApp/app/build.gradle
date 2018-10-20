@@ -93,9 +93,14 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.30.2"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.30.2'
 
-    implementation 'io.nlopez.smartlocation:library:3.3.3'
+    implementation ('io.nlopez.smartlocation:library:3.3.3') {
+        transitive = false
+    }
     implementation "com.github.hotchemi:permissionsdispatcher:4.0.0-alpha1"
     kapt "com.github.hotchemi:permissionsdispatcher-processor:4.0.0-alpha1"
 
     implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+
+
 }

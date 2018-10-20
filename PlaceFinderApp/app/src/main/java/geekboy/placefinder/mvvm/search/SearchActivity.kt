@@ -65,7 +65,7 @@ class SearchActivity : BaseActivity<SearchViewModel>(), HasSupportFragmentInject
             if (it.code()==200){
                 if (it.body()?.placesList?.size?:0 > 0){
                     val intent = Intent (SearchActivity@this, PlacesActivity::class.java)
-                    intent.putExtra("place_list",it.body()?.placesList)
+                    intent.putParcelableArrayListExtra("place_list",it.body()?.placesList)
                     intent.putExtra("title",searchViewModel.searchString.get().toString())
                     intent.putExtra("type", RENDER_BOTH_MAP_LIST)
                     startActivity(intent)
