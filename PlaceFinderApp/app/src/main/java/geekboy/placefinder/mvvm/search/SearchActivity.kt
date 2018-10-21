@@ -25,6 +25,9 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import geekboy.placefinder.mvvm.places.PlacesActivity
 import geekboy.placefinder.mvvm.places.RENDER_BOTH_MAP_LIST
+import geekboy.placefinder.mvvm.places.RENDER_ONLY_LIST
+import geekboy.placefinder.mvvm.places.placelist.PlaceListingFragment
+import geekboy.placefinder.repository.model.places.PlacesModel
 import permissions.dispatcher.OnPermissionDenied
 
 
@@ -37,7 +40,7 @@ class SearchActivity : BaseActivity<SearchViewModel>(), HasSupportFragmentInject
     @Inject
     lateinit var appViewModelFactory: AppViewModelFactory
 
-    private lateinit var searchViewModel: SearchViewModel
+    lateinit var searchViewModel: SearchViewModel
 
     @Inject
     lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
@@ -54,9 +57,23 @@ class SearchActivity : BaseActivity<SearchViewModel>(), HasSupportFragmentInject
             ) as ActivitySearchBinding
         }
         searchBinding.searchVM = searchViewModel
-       loadRecentSearchFragment()
+       if (isNetworkConnected()) {
+           searchViewModel.loading.set(false)
+           loadRecentSearchFragment()
+       }else{
+           searchViewModel.loading.set(true)
+           loadFavoriteListFragment()
+       }
        fetchCurrentLocationWithPermissionCheck()
        observePlacesResults()
+    }
+
+    private fun loadFavoriteListFragment() {
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.recentSearchLayout, PlaceListingFragment.newInstance(ArrayList<PlacesModel>(),
+                RENDER_ONLY_LIST), FRAGMENT_TAG)
+            .commitAllowingStateLoss()
     }
 
     private fun observePlacesResults() {

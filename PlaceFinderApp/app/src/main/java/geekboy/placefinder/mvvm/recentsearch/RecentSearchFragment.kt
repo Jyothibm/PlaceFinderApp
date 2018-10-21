@@ -16,11 +16,17 @@ import dagger.android.support.AndroidSupportInjection
 import geekboy.placefinder.R
 import geekboy.placefinder.databinding.RecentSearchFragmentBinding
 import geekboy.placefinder.mvvm.base.BaseFragment
+import geekboy.placefinder.mvvm.search.SearchActivity
 import geekboy.placefinder.utils.autoCleared
 import geekboy.placefinder.viewmodel.AppViewModelFactory
 import javax.inject.Inject
 
-class RecentSearchFragment : BaseFragment<RecentSearchViewModel>() {
+class RecentSearchFragment : BaseFragment<RecentSearchViewModel>(), OnItemClickListener {
+    override fun onClick(searchString: String) {
+        val searchActivity = activity as SearchActivity
+        searchActivity.searchViewModel.searchString.set(searchString)
+        searchActivity.searchViewModel.getPlaceInformation()
+    }
 
     companion object {
         fun newInstance() = RecentSearchFragment()
@@ -60,7 +66,7 @@ class RecentSearchFragment : BaseFragment<RecentSearchViewModel>() {
 
         viewModel.recentSearchList.observe(this, Observer {
             if (it != null && it.size > 0) {
-                binding.rvRecentSearch.adapter = RecentSearchAdapter(it)
+                binding.rvRecentSearch.adapter = RecentSearchAdapter(it, this@RecentSearchFragment)
             }
         })
     }
@@ -74,4 +80,8 @@ class RecentSearchFragment : BaseFragment<RecentSearchViewModel>() {
         viewModel.getRecentSearchData()
     }
 
+}
+
+interface OnItemClickListener{
+    fun onClick(searchString: String)
 }

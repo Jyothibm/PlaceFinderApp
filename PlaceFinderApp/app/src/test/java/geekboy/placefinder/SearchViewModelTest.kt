@@ -2,23 +2,26 @@ package geekboy.placefinder
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import geekboy.placefinder.data.AppDataManager
-import geekboy.placefinder.di.component.DaggerAppComponent
-import geekboy.placefinder.di.module.ApplicationModule
+import geekboy.placefinder.data.remote.IApiMethods
 import geekboy.placefinder.mvvm.search.SearchViewModel
-import org.junit.Assert
-import org.junit.BeforeClass
-import org.junit.Rule
-import org.junit.Test
+import geekboy.placefinder.repository.model.places.PlacesResponse
+import geekboy.placefinder.utils.API_KEY
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.mockito.ArgumentMatchers
+import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.Mockito.anyString
 import org.mockito.Mockito.mock
-import javax.inject.Inject
+import org.mockito.Mockito.times
+import org.mockito.MockitoAnnotations
+import retrofit2.Response
 
 @RunWith(JUnit4::class)
-class SearchViewModelTest {
+open class SearchViewModelTest {
 
     @Rule
     @JvmField
@@ -26,17 +29,45 @@ class SearchViewModelTest {
 
     private val appDatamanager = mock(AppDataManager::class.java)
 
-    private val searchViewModel = SearchViewModel(appDatamanager)
+    private lateinit var searchViewModel: SearchViewModel
 
-    @Test
-    fun checkPlacesNotNull() {
+    @Before
+    fun setUp(){
+        MockitoAnnotations.initMocks(this)
+        searchViewModel = Mockito.spy(SearchViewModel(appDatamanager))
 
     }
 
     @Test
-    fun checkSearchString(){
+    fun getPlaceInformationByEmptyString(){
+        searchViewModel.searchString.set("")
+        searchViewModel.currentLocation ="19.205980,72.866060"
+
+        searchViewModel.getPlaceInformation()
+
+        Mockito.verify(appDatamanager,Mockito.never()).getNearbyPlacesData(searchViewModel.currentLocation
+            , searchViewModel.searchString.get().toString())
+    }
+
+    @Test
+    fun getPlaceInformationByEmptyLocation(){
+        searchViewModel.searchString.set("ATM")
+        searchViewModel.currentLocation =""
+
+
+        searchViewModel.getPlaceInformation()
+
+
+        Mockito.verify(appDatamanager,Mockito.never()).getNearbyPlacesData(searchViewModel.currentLocation
+            , searchViewModel.searchString.get().toString())
+    }
+
+
+
+    @Test
+    fun checkSearchString() {
         searchViewModel.searchString.set("Foo")
-        Assert.assertEquals("Foo",searchViewModel.searchString.get().toString())
+        Assert.assertEquals("Foo", searchViewModel.searchString.get().toString())
     }
 
 }

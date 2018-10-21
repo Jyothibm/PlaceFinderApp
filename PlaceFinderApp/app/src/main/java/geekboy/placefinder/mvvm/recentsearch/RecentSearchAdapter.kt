@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import geekboy.placefinder.R
 import geekboy.placefinder.repository.local.db.recentsearch.RecentSearch
 
-class RecentSearchAdapter(var listSearch: ArrayList<RecentSearch>) :
+class RecentSearchAdapter(var listSearch: ArrayList<RecentSearch>, val listener: OnItemClickListener) :
     RecyclerView.Adapter<RecentSearchAdapter.RecentSearchVH>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentSearchVH {
         return RecentSearchVH(parent)
@@ -21,6 +21,10 @@ class RecentSearchAdapter(var listSearch: ArrayList<RecentSearch>) :
     override fun onBindViewHolder(holder: RecentSearchVH, position: Int) {
 
         holder.bind(listSearch[position].name)
+        holder.getBindingObject().root.setOnClickListener {
+            listener.onClick(listSearch[position].name)
+        }
+
     }
 
 
@@ -48,6 +52,8 @@ class RecentSearchAdapter(var listSearch: ArrayList<RecentSearch>) :
             false
         )
     ) : RecyclerView.ViewHolder(binding.root) {
+
+        fun getBindingObject() = binding
 
         fun bind(item: String) {
             binding.searchString = item

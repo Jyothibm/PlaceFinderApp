@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import geekboy.placefinder.data.AppDataManager
 import geekboy.placefinder.repository.local.db.recentsearch.RecentSearch
 import geekboy.placefinder.repository.local.db.recentsearch.RecentSearchDao
-import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 class RecentSearchViewModel

@@ -86,9 +86,9 @@ class PlaceMapFragment : BaseFragment<PlaceMapViewModel>(), OnMapReadyCallback {
     private fun loadMarkers() {
         paramPlaceList?.map {
             val title = it.placeName
-            val address = it.addressModel.addressName
-            val loc = it.geoLocation.location
-            val latLong = LatLng(loc.latitude,loc.longitude)
+            val address = it.address
+            val loc = it.geoLocation?.location
+            val latLong = LatLng(loc?.latitude?:0.0,loc?.longitude?:0.0)
             val markerOptions = MarkerOptions()
                 .position(latLong)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))

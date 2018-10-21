@@ -16,11 +16,11 @@ import geekboy.placefinder.mvvm.search.SearchActivity
 abstract class ActivityBindingModule {
 
     @ActivityScoped
-    @ContributesAndroidInjector(modules = [(SearchFragmentBindingModule::class)])
+    @ContributesAndroidInjector(modules = [FragmentBindingModule::class])
     abstract fun searchActivity(): SearchActivity
 
     @ActivityScoped
-    @ContributesAndroidInjector(modules = [(PlaceFragmentBindingModule::class)])
+    @ContributesAndroidInjector(modules = [FragmentBindingModule::class])
     abstract fun PlacesActivity(): PlacesActivity
 
 

@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 
 import kotlinx.android.parcel.Parcelize
 
-@Entity(indices = [Index(value = "name", unique = true)])
+@Entity(indices = [Index(value = ["name"], unique = true)])
 data class RecentSearch(
 
     @PrimaryKey(autoGenerate = true)

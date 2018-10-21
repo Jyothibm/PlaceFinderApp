@@ -1,9 +1,9 @@
 package geekboy.placefinder.data.remote
 
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import geekboy.placefinder.repository.model.places.PlacesResponse
 import geekboy.placefinder.utils.API_KEY
-import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response

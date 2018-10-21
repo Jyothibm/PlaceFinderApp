@@ -64,20 +64,20 @@ class PlacesActivity : BaseActivity<PlacesViewModel>(), HasSupportFragmentInject
         }
     }
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> =  fragmentDispatchingAndroidInjector
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentDispatchingAndroidInjector
 
     private fun intentData() {
         intent?.let {
             stringTitle = it.getStringExtra("title")
             listPlaces = it.getParcelableArrayListExtra<PlacesModel>("place_list")
-            renderType = it.getIntExtra("type",0)
+            renderType = it.getIntExtra("type", 0)
         }
     }
 
     private fun initViews() {
         when (renderType) {
             RENDER_BOTH_MAP_LIST -> {
-                placeListFragment = PlaceListingFragment.newInstance(listPlaces)
+                placeListFragment = PlaceListingFragment.newInstance(listPlaces, RENDER_BOTH_MAP_LIST)
                 placeMapFragment = PlaceMapFragment.newInstance(listPlaces)
                 supportFragmentManager.beginTransaction()
                     .add(R.id.togglePlaceView, placeMapFragment, "PlaceMapFragment").commitAllowingStateLoss()

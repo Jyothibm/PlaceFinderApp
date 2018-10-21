@@ -7,7 +7,7 @@ import geekboy.placefinder.repository.local.db.AppDbManager
 import geekboy.placefinder.repository.local.db.favsearch.FavoritePlaceDao
 import geekboy.placefinder.repository.local.db.recentsearch.RecentSearchDao
 import geekboy.placefinder.repository.model.places.PlacesResponse
-import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.Deferred
 import retrofit2.Response
 
 
